@@ -11,6 +11,9 @@ BOT_NAME = "comment_project"
 
 SPIDER_MODULES = ["comment_project.spiders"]
 NEWSPIDER_MODULE = "comment_project.spiders"
+DOWNLOADER_MIDDLEWARES = {
+    'comment_project.middlewares.SeleniumMiddleware': 543,
+}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
