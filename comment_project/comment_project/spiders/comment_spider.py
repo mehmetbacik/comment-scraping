@@ -3,6 +3,7 @@ from scrapy.http import HtmlResponse
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
@@ -38,14 +39,41 @@ class CommentSpider(scrapy.Spider):
         # Get the HTML content of the page
         page_source = self.driver.page_source
         sel_response = HtmlResponse(url=response.url, body=page_source, encoding='utf-8')
-
-        # Capture and save product links
         product_links = sel_response.css('a.product-link::attr(href)').getall()
+
         for link in product_links:
             product_url = response.urljoin(link)
-            yield {
-                'product_url': product_url
-            }
+            yield scrapy.Request(product_url, callback=self.parse_product)
+
+    def parse_product(self, response):
+        """
+        Click on the 'All Comments' button on the product detail page and be directed to the comments page.
+        """
+        self.driver.get(response.url)
+        time.sleep(2)
+
+        try:
+            # Click on the "All Comments" button
+            comments_button = self.driver.find_element(By.CLASS_NAME, "navigate-all-reviews-btn")
+            comments_button.click()
+            time.sleep(2)
+
+            # Get the comments page URL
+            comments_url = self.driver.current_url
+            self.log(f"Redirecting to the comments page: {comments_url}")
+            yield scrapy.Request(comments_url, callback=self.parse_comments)
+
+        except Exception as e:
+            self.log(f"Error redirecting to comments page: {e}")
+
+    def parse_comments(self, response):
+        """
+        Pulls comments from the comments page.
+        """
+        comments = response.css('.review-comment::text').getall()
+        yield {
+            "comments": comments
+        }
 
     def __del__(self):
         """
