@@ -98,6 +98,9 @@ class RandomUserAgentMiddleware:
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
+FEED_FORMAT = 'json'
+FEED_URI = 'output/reviews.json'
+
 # Enable and configure HTTP caching (disabled by default)
 # HTTPCACHE_ENABLED = True
 # HTTPCACHE_EXPIRATION_SECS = 0

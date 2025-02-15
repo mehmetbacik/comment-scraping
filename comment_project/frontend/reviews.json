@@ -1,0 +1,7 @@
+[
+    {"name": "A", "date": "2025-02-15", "comment": "The product is great!"},
+    {"name": "B", "date": "2025-02-14", "comment": "Good for its price."},
+    {"name": "C", "date": "2025-02-13", "comment": "The shipment arrived very slowly."}
+    { "name": "D", "date": "2025-02-12", "comment": "I'd buy it again!" },
+    { "name": "E", "date": "2025-02-11", "comment": "Packaging could be better." }
+]
