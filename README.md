@@ -23,9 +23,7 @@ This project is a web scraping application built with Scrapy and Selenium to col
 
 ## Installation
 
-- **Backend Setup**
-
-To clone the project, run the following commands:
+### Backend Setup
 
 Clone the repository:
 
@@ -45,20 +43,17 @@ Run the Scrapy spider:
 scrapy crawl comment_spider
 ```
 
-- **Frontend Setup**
+### Frontend Setup
 
-Open index.html in a browser.
-
-Ensure scripts.js fetches and displays the extracted comments correctly.
+- Open index.html in a browser.
+- Ensure scripts.js fetches and displays the extracted comments correctly.
 
 
 ## Usage
 
-The Scrapy spider navigates the product listing page, extracts links, and fetches reviews.
-
-The extracted data is stored in JSON format.
-
-The frontend displays the reviews dynamically.
+- The Scrapy spider navigates the product listing page, extracts links, and fetches reviews.
+- The extracted data is stored in JSON format.
+- The frontend displays the reviews dynamically.
 
 
 ## GitHub Page
